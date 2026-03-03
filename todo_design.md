@@ -83,3 +83,9 @@ phpMyAdmin
 ユーザー名：todo-app
 ホスト名：localhost
 パスワード：asdf2469?
+http://localhost/phpmyadmin/
+
+$_GET['page]で作成
+index.php?page=add_task
+switch $page
+case 'add_task':
