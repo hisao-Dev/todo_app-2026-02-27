@@ -85,6 +85,10 @@ phpMyAdmin
 パスワード：asdf2469?
 http://localhost/phpmyadmin/
 
+git add .
+git commit -m "変更内容"
+git push
+
 $_GET['page]で作成
 index.php?page=add_task
 switch $page
