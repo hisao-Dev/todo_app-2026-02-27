@@ -21,7 +21,7 @@ $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 try {
     $pdo = new PDO($dsn, $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "データベース接続成功";
+    // echo "データベース接続成功";
 } catch (PDOException $e) {
     echo "接続失敗: " . $e->getMessage();
 }
