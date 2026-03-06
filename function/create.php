@@ -50,7 +50,8 @@ try {
         ':priority' => $priority
     ]);
 
-    echo "タスク保存完了";
+    header('Location: ../Views/index.php?page=add_task&status=success');
+    exit;
 } catch (PDOException $e) {
     echo "エラー: " . $e->getMessage();
 }

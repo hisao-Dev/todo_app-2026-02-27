@@ -38,5 +38,13 @@
             </div>
         </div>
     </form>
-
+    <?php
+        $message = '';
+        if (isset($_GET['status']) && $_GET['status'] === 'success') {
+            $message = 'タスクの作成が完了しました';
+        }
+        if ($message) {
+            echo "<p>".$message."</p>";
+        }
+    ?>
 </div>

@@ -1,0 +1,34 @@
+div > #display {
+    flex-grow: 1;
+    white-space: nowrap; 
+    overflow-y: auto;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    padding: 10px 40px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+#display > #taskDisplay {
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    padding: 10px 40px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+#display #info_box {
+    display: flex;
+    gap: 24px;
+    margin-left: auto;
+}
+
+#display #task_head {
+    display: flex;
+}
+
+#display #task_footer {
+    display: flex;
+    gap: 24px;
+    margin-left: auto;
+}
