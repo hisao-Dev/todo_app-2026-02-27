@@ -10,6 +10,15 @@
                 <li><a href="index.php?page=calendar">カレンダー</a></li>
                 <li><a href="index.php?page=user">ユーザー</a></li>
             </ul>
+            <?php 
+            $message = '';
+            if (isset($_GET['status']) && $_GET['status'] === 'delete') {
+                $message = '削除しました';
+            }
+            if ($message) {
+                echo "<p>".$message."</p>";
+            }
+        ?>
         </nav>
     </div>
     <div id="right">

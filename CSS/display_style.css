@@ -6,9 +6,10 @@ div > #display {
     background-color: #FFFFFF;
     padding: 10px 40px 0;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    height: 500px;
 }
 
-#display > #taskDisplay {
+#display > .taskDisplay {
     border-radius: 8px;
     background-color: #FFFFFF;
     padding: 10px 40px 0;
@@ -17,18 +18,25 @@ div > #display {
     flex-direction: column;
 }
 
-#display #info_box {
+#display .info_box {
     display: flex;
     gap: 24px;
     margin-left: auto;
 }
 
-#display #task_head {
+#display .task_head {
     display: flex;
+    padding-bottom: 8px;
+    border-bottom:1px solid rgb(201, 181, 181);
 }
 
-#display #task_footer {
+#display .task_footer {
     display: flex;
     gap: 24px;
     margin-left: auto;
+}
+
+#display .hr {
+    border-bottom:1px solid black;
+    color: black;
 }
