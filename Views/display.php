@@ -19,13 +19,15 @@
             $stmt->execute(['today' => $today]);
             $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $options = ['未完了', '保留', '完了'];
+            
 
             foreach ($tasks as $task) {
                 echo "<div class='taskDisplay'>";
                 echo "<div class='task_head'>";
                 echo "<div class='task_name'>".$task['task']."</div>";
                 echo "<div class='info_box'>";
-                echo "<div class='task_time'>".$task['task_datetime']."</div>";
+                $dt = new DateTime($task['task_datetime']);
+                echo "<div class='task_time'>期日：".$dt->format('H:i')."まで</div>";
                 echo "<form action='../function/status_edit.php' method='POST'>";
                 echo "<input type='hidden' name='id' value='" . $task['id'] . "'>";
                 echo "<select name='status' onchange='this.form.submit()'>";
