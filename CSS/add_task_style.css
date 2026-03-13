@@ -6,16 +6,19 @@
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 } 
 
-label {
+#menu_item > form label {
     display: block;
     margin-bottom: 6px;
     font-weight: bold;
     color: #555;
 }
 
-input[type="text"],
-input[type="datetime-local"],
-textarea {
+#menu_item > form input[type="text"],
+#menu_item > form input[type="date"],
+#menu_item > form input[type="time"],
+#menu_item > form input[type="datetime-local"],
+#menu_item > form select,
+#menu_item > form textarea {
     padding: 8px 10px;
     margin-bottom: 16px;
     border: 1px solid #ccc;
@@ -25,23 +28,25 @@ textarea {
     transition: border-color 0.3s;
 }
 
-input[type="text"]:focus,
-input[type="datetime-local"]:focus,
-select:focus,
-textarea:focus {
+#menu_item > form input[type="text"]:focus,
+#menu_item > form input[type="date"]:focus,
+#menu_item > form input[type="time"]:focus,
+#menu_item > form input[type="datetime-local"]:focus,
+#menu_item > form select:focus,
+#menu_item > form textarea:focus {
     border-color: #007bff;
     outline: none;
 }
 
-input[type="text"] {
+#menu_item > form input[type="text"] {
     width: 60%;
 }
 
-textarea {
+#menu_item > form textarea {
     width: 100%;
     height: 40%;
 }
-input[type="submit"] {
+#menu_item > form input[type="submit"] {
     height: 36px;
     padding: 0 16px;
     background-color: #007bff;
@@ -77,4 +82,8 @@ input[type="submit"]:hover {
 
 #unit > div:nth-child(3) {
    margin: 0 5%;
+}
+
+#menu_item > form select {
+    text-align: center;
 }

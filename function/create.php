@@ -14,7 +14,7 @@ if ($task_date !== '') {
     $task_datetime = null; // 日付が未入力ならNULL
 }
 // フォームから送信された priority を整数で受け取る
-$priority = isset($_POST['priority']) && $_POST['priority'] !== '' ? (int)$_POST['priority'] : 0;
+$priority = isset($_POST['priority']) && $_POST['priority'] !== '' ? $_POST['priority'] : 0;
 
 try {
     // 既存ユーザーを検索

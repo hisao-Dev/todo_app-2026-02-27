@@ -56,7 +56,7 @@ $sql_tasks = $conn->query("CREATE TABLE IF NOT EXISTS tasks (
     content TEXT,
     task_datetime DATETIME,
     status ENUM('未完了','保留','完了') DEFAULT '未完了',
-    priority INT DEFAULT 0,
+    priority ENUM('null', '高', '中', '低') DEFAULT 'null',
     created_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_date DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE

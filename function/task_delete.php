@@ -2,7 +2,7 @@
 require_once '../datebase/db_connect.php';
 
 $id = $_POST['id'];
-var_dump($id);
+
 try {
     $sql = "DELETE FROM tasks WHERE id = :id";
     $stmt = $pdo->prepare($sql);
