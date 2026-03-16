@@ -25,7 +25,7 @@
             <div id="unit_2">
                 <label for="priority">優先度：</label>
                 <select id="priority" name="priority">
-                    <option value="null">設定しない</option>
+                    <option value="-">設定しない</option>
                     <option value="高">高</option>
                     <option value="中">中</option>
                     <option value="低">低</option>

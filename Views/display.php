@@ -1,20 +1,21 @@
 <p id="title">
     今日のタスク&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <?php
+    <?php            
         $date = new DateTime(); // 現在日時
         $w = ['日','月','火','水','木','金','土']; // 日本語曜日
         $dayOfWeek = $w[$date->format('w')]; // 0(日)～6(土)
         echo $date->format('Y年m月d日') . "($dayOfWeek)";
     ?>
-    <form id="sortForm" method="GET">
-        <label for="sort">並び替え:</label>
-        <select name="sort" id="sort" onchange="this.form.submit()">
-            <option value="time" <?= ($_GET['sort'] ?? '')=='time' ? 'selected':'' ?>>期日順</option>
-            <option value="priority" <?= ($_GET['sort'] ?? '')=='priority' ? 'selected':'' ?>>優先度順</option>
-            <option value="status" <?= ($_GET['sort'] ?? '')=='status' ? 'selected':'' ?>>ステータス順</option>  
-        </select>
-    </form>
 </p>
+<form id="sortForm" method="GET">
+    <label for="sort">並び替え:</label>
+    <select name="sort" id="sort" onchange="this.form.submit()">
+        <option value="time" <?= ($_GET['sort'] ?? '')=='time' ? 'selected':'' ?>>期日順</option>
+        <option value="priority" <?= ($_GET['sort'] ?? '')=='priority' ? 'selected':'' ?>>優先度順</option>
+        <option value="status" <?= ($_GET['sort'] ?? '')=='status' ? 'selected':'' ?>>ステータス順</option>  
+    </select>
+</form>
+
 
 <div id="display">
     <?php 
@@ -24,7 +25,7 @@
             $today = date('Y-m-d');
             $options = ['未完了', '保留', '完了', '-'];
             $prioritys = ['高', '中', '低', '-']; // 優先度順に修正
-            $sort = $_GET['sort'] ?? 'time'; // デフォルトは期日順
+            $sort = $_GET['sort'] ?? 'time';
 
             // 並び替え用SQL
             switch($sort) {
@@ -56,12 +57,12 @@
                 // 期日表示
                 $dt = new DateTime($task['task_datetime']);
                 echo "<div class='task_time'>期日：";
-                echo $dt->format('H:i') === '00:00' ? "本日中</div>" : $dt->format('H:i')."まで</div>";
+                echo $dt->format('H:i') === '00:00' ? "本日中&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>" : $dt->format('H:i')."まで</div>";
 
                 // 優先度フォーム
                 echo "<form action='../function/priority_edit.php' method='POST'>";
                 echo "<input type='hidden' name='id' value='" . $task['id'] . "'>";
-                echo "<input type='hidden' name='sortOrder' value='".$sort."'>";// -----------------------------------------------------------------
+                echo "<input type='hidden' name='sort' value='". $sort ."'>";
                 echo "<label for='priority'>優先度：</label>";
                 echo "<select name='priority' onchange='this.form.submit()'>";
                 foreach ($prioritys as $priority) {
@@ -73,6 +74,7 @@
                 // ステータスフォーム
                 echo "<form action='../function/status_edit.php' method='POST'>";
                 echo "<input type='hidden' name='id' value='" . $task['id'] . "'>";
+                echo "<input type='hidden' name='sort' value='". $sort ."'>";
                 echo "<label for='status'>ステータス：</label>";
                 echo "<select name='status' onchange='this.form.submit()'>";
                 foreach ($options as $option) {
@@ -82,13 +84,20 @@
                 echo "</select></form>";
 
                 echo "</div></div><hr class='hr'>";
-                echo "<div class='task_main'>".$task['content']."</div>";
+                // 内容
+                echo "<div class='task_main'>".nl2br(htmlspecialchars($task['content']))."</div>";
+
+                // 編集・削除
                 echo "<div class='task_footer'>";
-                echo "<a class='task_edit' href=''>編集</a>";
+                echo "<form action='index.php?page=edit_task' method='POST'>";
+                echo "<input type='hidden' name='id' value='" . $task['id'] . "'>";
+                echo "<input type='hidden' name='sort' value='". $sort ."'>";
+                echo "<button class='task_edit' type='submit'>編集</button>";
+                echo "</form>";
                 echo "<form action='../function/task_delete.php' method='POST'>";
                 echo "<input type='hidden' name='id' value='" . $task['id'] . "'>";
                 echo "<button class='task_delete' type='submit'>削除</button>";
-                echo "</form><hr></div></div>";
+                echo "</form></div></div>";
             }
 
         } catch (PDOException $e) {

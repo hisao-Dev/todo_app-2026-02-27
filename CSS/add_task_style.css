@@ -58,29 +58,29 @@
     transition: background-color 0.3s;
 }
 
-input[type="submit"]:hover {
+#menu_item input[type="submit"]:hover {
     background-color: #0056b3;
 }
 
-#unit {
+#menu_item #unit {
     display: flex;
     gap: 24px;
     line-height: 3;
 }
 
-#unit_1,
-#unit_2 {
+#menu_item #unit_1,
+#menu_item #unit_2 {
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-#unit_2 > #priority {
+#menu_item #unit_2 > #priority {
     display: flex;
     align-items: center;
 }
 
-#unit > div:nth-child(3) {
+#menu_item #unit > div:nth-child(3) {
    margin: 0 5%;
 }
 

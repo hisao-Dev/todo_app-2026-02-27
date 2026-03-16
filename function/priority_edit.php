@@ -1,9 +1,9 @@
 <?php
 require_once '../datebase/db_connect.php';
 
-$priority = $_POST['priority'];
 $id = $_POST['id'];
-$sortOrder = isset($_POST['sortOrder']) ? $_POST['sortOrder'] : null; // ------------------------------------------
+$priority = $_POST['priority'];
+$sort = $_POST['sort']; 
 
 try {
     $sql = "UPDATE tasks SET priority = :priority WHERE id = :id";
@@ -13,7 +13,7 @@ try {
     $stmt->bindValue(':id', $id);
 
     $stmt->execute();
-    header('Location: ../Views/index.php?page=display&sort=$sortOrder');// --------------------------------
+    header("Location: ../Views/index.php?page=display&sort=$sort");
     exit;
 } catch (PDOException $e) {
     echo "エラー: " . $e->getMessage();

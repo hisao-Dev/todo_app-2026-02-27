@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/main.css">
     <title>タスク管理アプリ</title>
+    <script src="../JS/script.js" defer></script>
 </head>
 <body>
 <?php

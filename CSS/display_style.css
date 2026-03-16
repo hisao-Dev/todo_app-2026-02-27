@@ -1,34 +1,37 @@
 div > #display {
-    flex-grow: 1;
-    white-space: nowrap; 
-    overflow-y: auto;
+    overflow-y: scroll;
     border-radius: 8px;
     background-color: #FFFFFF;
-    padding: 10px 40px 0;
+    padding: 10px 10px 0;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    height: 500px;
+    height: 450px;
+    width: 98%;
 }
 
 #display > .taskDisplay {
     border-radius: 8px;
     background-color: #FFFFFF;
-    padding: 10px 40px 0;
+    padding: 10px 30px 0;
     margin-bottom: 10px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     display: flex;
     flex-direction: column;
+    width: 94%;
 }
 
 #display .info_box {
     display: flex;
-    gap: 24px;
+    gap: 18px;
     margin-left: auto;
+    background-color: rgb(221, 227, 202);
+    border-radius: 4px;
 }
 
 #display .task_head {
     display: flex;
     padding-bottom: 8px;
     border-bottom:1px solid rgb(201, 181, 181);
+    width: 100%;
 }
 
 #display .task_footer {
@@ -44,4 +47,22 @@ div > #display {
 
 #display > .taskDisplay  form select {
     text-align: center;
+}
+
+#display > .taskDisplay .task_main {
+    width: 100%;
+    white-space: normal; 
+    word-break: break-word; 
+}
+
+.task_name {
+    flex: 1;
+    white-space: normal;       
+    word-break: break-word; 
+    overflow-y: auto;
+    height: 2em;
+}
+
+#sortForm {
+    margin-bottom: 10px;
 }

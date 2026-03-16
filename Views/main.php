@@ -43,6 +43,9 @@
                     case 'user':
                         require_once 'user.php';
                         break;
+                    case 'edit_task':
+                        require_once 'edit_task.php';
+                        break;
                     default:
                         echo "<p>ようこそ！メニューから選択してください。</p>";
                 }
