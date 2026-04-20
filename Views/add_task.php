@@ -17,8 +17,27 @@
                 <label for="task_date">期限：</label>
                 <input type="date" id="task_date" name="task_date"><br>
 
-                <label for="task_time">時間（任意）：</label>
-                <input type="time" id="task_time" name="task_time"><br>
+                <label for="task_time_">時間（任意）：</label>
+                <select name="task_time_h">
+                <?php
+                echo "<option value='--'>ー</option>";
+                for ($h = 0; $h < 24; $h++) {
+                    $hh = sprintf('%02d', $h);
+                    echo "<option value='$hh'>$hh</option>";
+                }
+                ?>
+                </select>
+                ：
+                <select name="task_time_m">
+                <?php
+                echo "<option value='--'>ー</option>";
+                for ($m = 0; $m < 60; $m += 5) {
+                    $mm = sprintf('%02d', $m);
+                    echo "<option value='$mm'>$mm</option>";
+                }
+                ?>
+                </select>
+                </select><br>
             </div>
 
             <!-- 優先度 -->
