@@ -23,7 +23,7 @@
 
         try {
             $today = date('Y-m-d');
-            $options = ['未完了', '保留', '完了', '-'];
+            $options = ['未着手', '進行中', '完了'];
             $prioritys = ['高', '中', '低', '-']; // 優先度順に修正
             $sort = $_GET['sort'] ?? 'time';
 
@@ -33,7 +33,7 @@
                     $orderSQL = "ORDER BY FIELD(priority, '高','中','低','-'), task_datetime ASC";
                     break;
                 case 'status':
-                    $orderSQL = "ORDER BY FIELD(status, '未完了','保留','-','完了'), task_datetime ASC";
+                    $orderSQL = "ORDER BY FIELD(status, '未着手','進行中','完了'), task_datetime ASC";
                     break;
                 case 'time':
                     $orderSQL = "ORDER BY CASE WHEN TIME(task_datetime) = '00:00:00' THEN 1 ELSE 0 END ASC, task_datetime ASC";
@@ -89,11 +89,24 @@
 
                 // 編集・削除
                 echo "<div class='task_footer'>";
-                echo "<form action='index.php?page=edit_task' method='POST'>";
-                echo "<input type='hidden' name='id' value='" . $task['id'] . "'>";
-                echo "<input type='hidden' name='sort' value='". $sort ."'>";
-                echo "<button class='task_edit' type='submit'>編集</button>";
-                echo "</form>";
+                echo "<button class='task_edit' 
+                        data-id='" . $task['id'] . "' 
+                        data-title='" . htmlspecialchars($task['task']) . "'
+                        data-content='" . htmlspecialchars($task['content']) . "'
+                        data-task_datetime='" . htmlspecialchars($task['task_datetime']) . "'
+                        data-status='" . htmlspecialchars($task['status']) . "'
+                        data-priority='" . htmlspecialchars($task['priority']) . "'
+                        type='button'>
+                        詳細編集
+                    </button>";
+                echo "<div id='modal' class='modal hidden'>
+                        <div>あああああ</div>
+                    </div>";
+                // echo "<form action='index.php?page=edit_task' method='POST'>";
+                // echo "<input type='hidden' name='id' value='" . $task['id'] . "'>";
+                // echo "<input type='hidden' name='sort' value='". $sort ."'>";
+                // echo "<button class='task_edit' type='submit'>詳細編集</button>";
+                // echo "</form>";
                 echo "<form action='../function/task_delete.php' method='POST'>";
                 echo "<input type='hidden' name='id' value='" . $task['id'] . "'>";
                 echo "<button class='task_delete' type='submit'>削除</button>";

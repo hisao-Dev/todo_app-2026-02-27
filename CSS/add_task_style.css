@@ -87,3 +87,7 @@
 #menu_item > form select {
     text-align: center;
 }
+
+#menu_item label span {
+    color: red;
+}

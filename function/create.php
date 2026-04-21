@@ -8,10 +8,7 @@ $task_date = $_POST['task_date'] ?? '';
 $task_time_h = $_POST['task_time_h'] ?? '';
 $task_time_m = $_POST['task_time_m'] ?? '';
 $task_time = $task_time_h.":".$task_time_m;
-echo $task_date."<br>";
-echo $task_time_h."<br>";
-echo $task_time_m."<br>";
-echo $task_time."<br>";
+
 if ($task_date !== '') {
     // 時間が未入力なら 00:00 に設定
     $task_time = $task_time !== '' ? $task_time : '00:00';
@@ -56,7 +53,7 @@ try {
         ':priority' => $priority
     ]);
 
-    // header('Location: ../Views/index.php?page=add_task&status=success');
+    header('Location: ../Views/index.php?page=add_task&status=success');
     exit;
 } catch (PDOException $e) {
     echo "エラー: " . $e->getMessage();

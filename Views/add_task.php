@@ -4,7 +4,7 @@
 <div id="menu_item">
     <form action="../function/create.php" method="POST">
         <!-- タスク名 -->
-        <label for="task">タイトル：</label>
+        <label for="task">タスク名：<span>(必須)</span></label>
         <input type="text" id="task" name="task" required><br>
 
         <!-- 内容 -->
@@ -17,7 +17,7 @@
                 <label for="task_date">期限：</label>
                 <input type="date" id="task_date" name="task_date"><br>
 
-                <label for="task_time_">時間（任意）：</label>
+                <label for="task_time_">時間：</label>
                 <select name="task_time_h">
                 <?php
                 echo "<option value='--'>ー</option>";
@@ -27,7 +27,6 @@
                 }
                 ?>
                 </select>
-                ：
                 <select name="task_time_m">
                 <?php
                 echo "<option value='--'>ー</option>";
