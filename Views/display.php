@@ -99,9 +99,6 @@
                         type='button'>
                         詳細編集
                     </button>";
-                echo "<div id='modal' class='modal hidden'>
-                        <div>あああああ</div>
-                    </div>";
                 // echo "<form action='index.php?page=edit_task' method='POST'>";
                 // echo "<input type='hidden' name='id' value='" . $task['id'] . "'>";
                 // echo "<input type='hidden' name='sort' value='". $sort ."'>";
@@ -112,6 +109,18 @@
                 echo "<button class='task_delete' type='submit'>削除</button>";
                 echo "</form></div></div>";
             }
+            echo "<div id='modal' class='modal hidden'>
+                    <div id='modal_data'>
+                        <span id='closeModal'>✖</span>
+                        <h2 id='modal_task'></h2>
+                        <div id='info_edit'>
+                            <div id='modal_task_datetime'></div>
+                            <div id='modal_priority'></div>
+                            <div id='modal_status'></div>
+                        </div>
+                        <p id='modal_content'></p>
+                    </div>
+                </div>";
 
         } catch (PDOException $e) {
             echo "エラー: " . $e->getMessage();

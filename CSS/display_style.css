@@ -68,15 +68,36 @@ div > #display {
 }
 
 .modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#modal_data {
+    background-color: white;
+    width: 80%;
+    height: 80%;
+    border-radius: 8px;
+    display: flex;
+}
+
+#closeModal {
+    margin-left: auto;
+    cursor: pointer;
+    width: 48px;
+    height: 24px;
+    text-align: center;
+}
+
+#closeModal:hover {
+    background-color: red;
+    color: white;
 }
 
 .hidden {

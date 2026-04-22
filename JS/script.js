@@ -9,12 +9,16 @@ items.forEach((el) => {
 });
 })
 
-document.querySelectorAll('.task_edit').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.getElementById('edit_id').value = btn.dataset.id;
-    document.getElementById('edit_title').value = btn.dataset.title;
-    document.getElementById('edit_content').value = btn.dataset.content;
+const edit_btn = document.querySelectorAll(".task_edit");
+const modal = document.getElementById("modal");
+const closeModal = document.getElementById("closeModal");
 
-    document.getElementById('modal').style.display = 'block';
+edit_btn.forEach(btn => {
+  btn.addEventListener("click", () => {
+    modal.classList.remove("hidden");
   });
+});
+
+closeModal.addEventListener("click", () => {
+  modal.classList.add("hidden");
 });
