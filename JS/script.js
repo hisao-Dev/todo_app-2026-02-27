@@ -13,12 +13,19 @@ const edit_btn = document.querySelectorAll(".task_edit");
 const modal = document.getElementById("modal");
 const closeModal = document.getElementById("closeModal");
 
-edit_btn.forEach(btn => {
-  btn.addEventListener("click", () => {
-    modal.classList.remove("hidden");
-  });
-});
 
 closeModal.addEventListener("click", () => {
   modal.classList.add("hidden");
+});
+
+edit_btn.forEach(button => {
+  button.addEventListener('click', function () { 
+    modal.classList.remove("hidden");
+    document.getElementById('modal_id').value = this.dataset.id;
+    document.getElementById('modal_task').value = this.dataset.title;
+    document.getElementById('modal_content').value = this.dataset.content;
+    document.getElementById('modal_task_datetime').value = this.dataset.task_datetime;
+    document.getElementById('modal_status').value = this.dataset.status;
+    document.getElementById('modal_priority').value = this.dataset.priority;
+  });
 });

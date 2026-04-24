@@ -85,6 +85,7 @@ div > #display {
     height: 80%;
     border-radius: 8px;
     display: flex;
+    flex-direction: column;
 }
 
 #closeModal {
@@ -101,5 +102,31 @@ div > #display {
 }
 
 .hidden {
-  display: none;
+    display: none;
+}
+
+#editForm {
+    padding: 12px 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+
+#keep_btn {
+    border: 2px solid #0d71bb;
+    background-color: #0d71bb;
+    color: white;
+    margin: auto;
+    margin-top: 24px;
+    width: 320px;
+    height: 40px;
+    border-radius: 2px;
+}
+
+#keep_btn:hover {
+    border-color: #0d71bb;
+    background-color: white;
+    color: #0d71bb;
 }

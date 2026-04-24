@@ -93,7 +93,7 @@
                         data-id='" . $task['id'] . "' 
                         data-title='" . htmlspecialchars($task['task']) . "'
                         data-content='" . htmlspecialchars($task['content']) . "'
-                        data-task_datetime='" . htmlspecialchars($task['task_datetime']) . "'
+                        data-taskdatetime='" . htmlspecialchars($task['task_datetime']) . "'
                         data-status='" . htmlspecialchars($task['status']) . "'
                         data-priority='" . htmlspecialchars($task['priority']) . "'
                         type='button'>
@@ -112,13 +112,38 @@
             echo "<div id='modal' class='modal hidden'>
                     <div id='modal_data'>
                         <span id='closeModal'>✖</span>
-                        <h2 id='modal_task'></h2>
-                        <div id='info_edit'>
-                            <div id='modal_task_datetime'></div>
-                            <div id='modal_priority'></div>
-                            <div id='modal_status'></div>
-                        </div>
-                        <p id='modal_content'></p>
+                        <form id='editForm' method='POST' action='update.php'>
+                            <input type='hidden' name='id' id='modal_id'>
+
+                            <label>タスク名：</label>
+                            <input type='text' name='title' id='modal_task'>
+
+                            <label>内容：</label>
+                            <textarea name='content' id='modal_content'></textarea>
+
+                            <label>期限：</label>
+                            <input type='datetime-local' name='task_datetime' id='modal_task_datetime'>
+
+                            <label>時間：</label>
+                            <input type='datetime-local' name='task_datetime' id='modal_task_datetime'>
+
+                            <label>優先度：</label>
+                            <select name='priority' id='modal_priority'>
+                                <option value='高'>高</option>
+                                <option value='中'>中</option>
+                                <option value='低'>低</option>
+                                <option value='-'>-</option>
+                            </select>
+
+                            <label>ステータス：</label>
+                            <select name='status' id='modal_status'>
+                                <option value='未着手'>未着手</option>
+                                <option value='進行中'>進行中</option>
+                                <option value='完了'>完了</option>
+                            </select>
+
+                            <button type='submit' id='keep_btn'>保存</button>
+                        </form>
                     </div>
                 </div>";
 
