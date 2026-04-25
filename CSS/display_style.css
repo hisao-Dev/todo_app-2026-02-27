@@ -109,10 +109,29 @@ div > #display {
     padding: 12px 24px;
     display: flex;
     flex-direction: column;
+    flex: 1;
 }
 
+#modal_task {
+    width: 480px;
+}
 
+#modal_content {
+    width: 80%;
+    height: 30%;
+}
 
+#datetime {
+    display: flex;
+}
+
+#modal_task_date,
+#modal_task_time,
+#modal_priority,
+#modal_status {
+    width: 160px;
+    text-align: center;
+}
 
 #keep_btn {
     border: 2px solid #0d71bb;
@@ -122,7 +141,7 @@ div > #display {
     margin-top: 24px;
     width: 320px;
     height: 40px;
-    border-radius: 2px;
+    border-radius: 4px;
 }
 
 #keep_btn:hover {
