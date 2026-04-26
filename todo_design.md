@@ -97,3 +97,7 @@ case 'add_task':
 勉強
 ・プレースホルダ
 ・phpの勉強
+
+壊れた場合
+REPAIR TABLE mysql.user;
+REPAIR TABLE mysql.db;

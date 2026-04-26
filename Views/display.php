@@ -112,26 +112,30 @@
                         <form id='editForm' method='POST' action='update.php'>
                             <input type='hidden' name='id' id='modal_id'>
 
-                            <label>タスク名：</label>
+                            <div class='section'>
+                                <label class='character'>タスク名</label><span class='colon'>：</span>
+                            </div>
                             <input type='text' name='title' id='modal_task'>
 
-                            <label>内容：</label>
+                            <div class='section'>
+                                <label class='character'>内容</label><span class='colon'>：</span>
+                            </div>
                             <textarea name='content' id='modal_content'></textarea>
 
                             <div id='datetime'>
                                 <div id='item1'>
-                                    <label>期限：</label>
+                                    <label class='character'>期限</label><span class='colon'>：</span>
                                     <input type='date' name='task_date' id='modal_task_date'>
                                 </div>
 
                                 <div id='item2'>
-                                    <label>時間：</label>
+                                    <label class='character'>時間</label><span class='colon'>：</span>
                                     <input type='time' name='task_time' id='modal_task_time'>
                                 </div>
                             </div>
 
                             <div id='item3'>
-                                <label>優先度：</label>
+                                <label class='character'>優先度</label><span class='colon'>：</span>
                                 <select name='priority' id='modal_priority'>
                                     <option value='高'>高</option>
                                     <option value='中'>中</option>
@@ -141,7 +145,7 @@
                             </div>
 
                             <div id='item4'>
-                                <label>ステータス：</label>
+                                <label class='character'>ステータス</label><span class='colon'>：</span>
                                 <select name='status' id='modal_status'>
                                     <option value='未着手'>未着手</option>
                                     <option value='進行中'>進行中</option>
