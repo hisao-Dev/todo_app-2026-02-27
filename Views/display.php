@@ -1,3 +1,4 @@
+<!-- 今日のタスク・日付 -->
 <p id="title">
     今日のタスク&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <?php            
@@ -7,6 +8,7 @@
         echo $date->format('Y年m月d日') . "($dayOfWeek)";
     ?>
 </p>
+<!-- 並び変え -->
 <form id="sortForm" method="GET">
     <label for="sort">並び替え:</label>
     <select name="sort" id="sort" onchange="this.form.submit()">
@@ -16,7 +18,7 @@
     </select>
 </form>
 
-
+<!-- タスクの表示 -->
 <div id="display">
     <?php 
         require_once '../datebase/db_connect.php';
@@ -24,7 +26,7 @@
         try {
             $today = date('Y-m-d');
             $options = ['未着手', '進行中', '完了'];
-            $prioritys = ['高', '中', '低', '-']; // 優先度順に修正
+            $prioritys = ['高', '中', '低', '-']; 
             $sort = $_GET['sort'] ?? 'time';
             
 
@@ -48,7 +50,8 @@
             $stmt = $pdo->prepare($sql);
             $stmt->execute(['today' => $today]);
             $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+            
+            //  タスク表示
             foreach ($tasks as $task) {
                 echo "<div class='taskDisplay'>";
                 echo "<div class='task_head'>";
@@ -95,7 +98,8 @@
                         data-title='" . htmlspecialchars($task['task']) . "'
                         data-content='" . htmlspecialchars($task['content']) . "'
                         data-taskdate='" . htmlspecialchars($dt->format('Y-m-d')) . "'
-                        data-tasktime='" . htmlspecialchars($dt->format('H:i')) . "'
+                        data-timeh='" . htmlspecialchars($dt->format('H')) . "'
+                        data-timem='" . htmlspecialchars($dt->format('i')) . "'
                         data-status='" . htmlspecialchars($task['status']) . "'
                         data-priority='" . htmlspecialchars($task['priority']) . "'
                         type='button'>
@@ -106,60 +110,79 @@
                 echo "<button class='task_delete' type='submit'>削除</button>";
                 echo "</form></div></div>";
             }
-            echo "<div id='modal' class='modal hidden'>
-                    <div id='modal_data'>
-                        <span id='closeModal'>✖</span>
-                        <form id='editForm' method='POST' action='update.php'>
-                            <input type='hidden' name='id' id='modal_id'>
 
-                            <div class='section'>
-                                <label class='character'>タスク名</label><span class='colon'>：</span>
-                            </div>
-                            <input type='text' name='title' id='modal_task'>
-
-                            <div class='section'>
-                                <label class='character'>内容</label><span class='colon'>：</span>
-                            </div>
-                            <textarea name='content' id='modal_content'></textarea>
-
-                            <div id='datetime'>
-                                <div id='item1'>
-                                    <label class='character'>期限</label><span class='colon'>：</span>
-                                    <input type='date' name='task_date' id='modal_task_date'>
-                                </div>
-
-                                <div id='item2'>
-                                    <label class='character'>時間</label><span class='colon'>：</span>
-                                    <input type='time' name='task_time' id='modal_task_time'>
-                                </div>
-                            </div>
-
-                            <div id='item3'>
-                                <label class='character'>優先度</label><span class='colon'>：</span>
-                                <select name='priority' id='modal_priority'>
-                                    <option value='高'>高</option>
-                                    <option value='中'>中</option>
-                                    <option value='低'>低</option>
-                                    <option value='-'>-</option>
-                                </select>
-                            </div>
-
-                            <div id='item4'>
-                                <label class='character'>ステータス</label><span class='colon'>：</span>
-                                <select name='status' id='modal_status'>
-                                    <option value='未着手'>未着手</option>
-                                    <option value='進行中'>進行中</option>
-                                    <option value='完了'>完了</option>
-                                </select>
-                            </div>
-
-                            <button type='submit' id='keep_btn'>保存</button>
-                        </form>
-                    </div>
-                </div>";
 
         } catch (PDOException $e) {
             echo "エラー: " . $e->getMessage();
         }
     ?> 
+    <!-- モーダル -->
+    <?php require_once '../function/time_edit.php'; ?>
+    <div id="modal" class="modal hidden">
+        <div id="modal_data">
+            <span id="closeModal">✖</span>
+
+            <form id="editForm" method="POST" action="update.php">
+                <input type="hidden" name="id" id="modal_id">
+                
+                <!-- タスク名 -->
+                <div>
+                    <label class="character">タスク名</label><span class="colon">：</span>
+                </div>
+                <textarea type="text" name="title" id="modal_task"></textarea>
+                
+                <!-- 内容 -->
+                <div>
+                    <label class="character">内容</label><span class="colon">：</span>
+                </div>
+                <textarea name="content" id="modal_content"></textarea>
+
+                <div id="datetime">
+
+                    <!-- 期限 -->
+                    <div>
+                        <label class="character">期限</label><span class="colon">：</span>
+                        <input type="date" name="task_date" id="modal_task_date">
+                    </div>
+
+                    <!-- 時間 -->
+                    <div>
+                        <label class="character">時間</label><span class="colon">：</span>
+                        <select name="time_h" id="modal_time_h">
+                            <option value="">ー</option>
+                            <?php getHourOptions(); ?>
+                        </select>
+
+                        <select name="time_m" id="modal_time_m">
+                            <option value="">ー</option>
+                            <?php getMinutesOptions(); ?>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 優先度 -->
+                <div>
+                    <label class="character">優先度</label><span class="colon">：</span>
+                    <select name="priority" id="modal_priority">
+                        <option value="高">高</option>
+                        <option value="中">中</option>
+                        <option value="低">低</option>
+                        <option value="-">-</option>
+                    </select>
+                </div>
+
+                <!-- ステータス -->
+                <div>
+                    <label class="character">ステータス</label><span class="colon">：</span>
+                    <select name="status" id="modal_status">
+                        <option value="未着手">未着手</option>
+                        <option value="進行中">進行中</option>
+                        <option value="完了">完了</option>
+                    </select>
+                </div>
+
+                <button type="submit" id="keep_btn">保存</button>
+            </form>
+        </div>
+    </div>
 </div>

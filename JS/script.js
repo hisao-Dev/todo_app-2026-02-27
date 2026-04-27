@@ -25,7 +25,8 @@ edit_btn.forEach(button => {
     document.getElementById('modal_task').value = this.dataset.title;
     document.getElementById('modal_content').value = this.dataset.content;
     document.getElementById('modal_task_date').value = this.dataset.taskdate;
-    document.getElementById('modal_task_time').value = this.dataset.tasktime;
+    document.getElementById('modal_time_h').value = this.dataset.timeh;
+    document.getElementById('modal_time_m').value = this.dataset.timem;
     document.getElementById('modal_status').value = this.dataset.status;
     document.getElementById('modal_priority').value = this.dataset.priority;
   });

@@ -1,3 +1,5 @@
+<?php require_once '../function/time_edit.php'; ?>
+
 <div>
     <p id="title">タスクの新規作成</p>
 </div>
@@ -21,21 +23,14 @@
                 <select name="task_time_h">
                 <?php
                 echo "<option value='--'>ー</option>";
-                for ($h = 0; $h < 24; $h++) {
-                    $hh = sprintf('%02d', $h);
-                    echo "<option value='$hh'>$hh</option>";
-                }
+                getHourOptions();
                 ?>
                 </select>
                 <select name="task_time_m">
                 <?php
                 echo "<option value='--'>ー</option>";
-                for ($m = 0; $m < 60; $m += 5) {
-                    $mm = sprintf('%02d', $m);
-                    echo "<option value='$mm'>$mm</option>";
-                }
+                getMinutesOptions();
                 ?>
-                </select>
                 </select><br>
             </div>
 
