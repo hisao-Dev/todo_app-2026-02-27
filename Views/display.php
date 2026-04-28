@@ -12,7 +12,7 @@
 <form id="sortForm" method="GET">
     <label for="sort">並び替え:</label>
     <select name="sort" id="sort" onchange="this.form.submit()">
-        <option value="time" <?= ($_GET['sort'] ?? '')=='time' ? 'selected':'' ?>>期日順</option>
+        <option value="time" <?= ($_GET['sort'] ?? '')=='time' ? 'selected':'' ?>>期限順</option>
         <option value="priority" <?= ($_GET['sort'] ?? '')=='priority' ? 'selected':'' ?>>優先度順</option>
         <option value="status" <?= ($_GET['sort'] ?? '')=='status' ? 'selected':'' ?>>ステータス順</option>  
     </select>
@@ -55,12 +55,12 @@
             foreach ($tasks as $task) {
                 echo "<div class='taskDisplay'>";
                 echo "<div class='task_head'>";
-                echo "<div class='task_name'>".$task['task']."</div>";
+                echo "<div class='task_name'>".$task['title']."</div>";
                 echo "<div class='info_box'>";
                 
                 // 期日表示
                 $dt = new DateTime($task['task_datetime']);
-                echo "<div class='task_time'>期日：";
+                echo "<div class='task_time'>期限：";
                 echo $dt->format('H:i') === '00:00' ? "本日中&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>" : $dt->format('H:i')."まで</div>";
 
                 // 優先度フォーム
@@ -95,7 +95,7 @@
                 echo "<div class='task_footer'>";
                 echo "<button class='task_edit' 
                         data-id='" . $task['id'] . "' 
-                        data-title='" . htmlspecialchars($task['task']) . "'
+                        data-title='" . htmlspecialchars($task['title']) . "'
                         data-content='" . htmlspecialchars($task['content']) . "'
                         data-taskdate='" . htmlspecialchars($dt->format('Y-m-d')) . "'
                         data-timeh='" . htmlspecialchars($dt->format('H')) . "'
@@ -122,14 +122,14 @@
         <div id="modal_data">
             <span id="closeModal">✖</span>
 
-            <form id="editForm" method="POST" action="update.php">
+            <form id="editForm" method="POST" action="../function/update.php">
                 <input type="hidden" name="id" id="modal_id">
                 
                 <!-- タスク名 -->
                 <div>
                     <label class="character">タスク名</label><span class="colon">：</span>
                 </div>
-                <textarea type="text" name="title" id="modal_task"></textarea>
+                <textarea type="text" name="title" id="modal_task" required></textarea>
                 
                 <!-- 内容 -->
                 <div>

@@ -15,6 +15,9 @@
             if (isset($_GET['status']) && $_GET['status'] === 'delete') {
                 $message = '削除しました';
             }
+            if (isset($_GET['status']) && $_GET['status'] === 'complete') {
+                $message = '編集が完了しました';
+            }
             if ($message) {
                 echo "<p>".$message."</p>";
             }

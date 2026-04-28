@@ -2,7 +2,7 @@
 require_once '../datebase/db_connect.php';
 
 // POSTデータ
-$task = $_POST['task'];
+$title = $_POST['title'];
 $content = $_POST['content'];
 $task_date = $_POST['task_date'] ?? '';
 $task_time_h = $_POST['task_time_h'] ?? '';
@@ -42,12 +42,12 @@ try {
     }
 
     // タスク登録
-    $sql = "INSERT INTO tasks (user_id, task, content, task_datetime, priority) 
-            VALUES (:user_id, :task, :content, :task_datetime, :priority)";
+    $sql = "INSERT INTO tasks (user_id, title, content, task_datetime, priority) 
+            VALUES (:user_id, :title, :content, :task_datetime, :priority)";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
         ':user_id' => $user_id,
-        ':task' => $task,
+        ':title' => $title,
         ':content' => $content,
         ':task_datetime' => $task_datetime,
         ':priority' => $priority
