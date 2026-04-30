@@ -11,6 +11,8 @@ $time_m = $_POST['time_m'] ?? '';
 $task_time = $time_h.":".$time_m;
 $priority = $_POST['priority'];
 $status = $_POST['status'];
+$sort = $_POST['sort'];
+echo $sort;
 
 if ($task_date !== '') {
     // 時間が未入力なら 00:00 に設定
@@ -68,7 +70,7 @@ try {
     //     ':priority' => $priority
     // ]);
 
-    header('Location: ../Views/index.php?page=display&status=complete');
+    header("Location: ../Views/index.php?page=display&status=complete&sort=$sort");
     exit;
 } catch (PDOException $e) {
     echo "エラー: " . $e->getMessage();

@@ -94,6 +94,7 @@
                 // 編集・削除
                 echo "<div class='task_footer'>";
                 echo "<button class='task_edit' 
+                        data-sort='". $sort."'
                         data-id='" . $task['id'] . "' 
                         data-title='" . htmlspecialchars($task['title']) . "'
                         data-content='" . htmlspecialchars($task['content']) . "'
@@ -124,7 +125,7 @@
 
             <form id="editForm" method="POST" action="../function/update.php">
                 <input type="hidden" name="id" id="modal_id">
-                
+                <input type="hidden" name="sort" value="<?php echo $sort; ?>">;
                 <!-- タスク名 -->
                 <div>
                     <label class="character">タスク名</label><span class="colon">：</span>
